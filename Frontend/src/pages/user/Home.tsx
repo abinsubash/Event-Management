@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../../components/user/Navbar';
 import homeImg1 from '../../assets/Home1.jpg';
 

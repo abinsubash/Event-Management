@@ -1,4 +1,3 @@
-import Navbar from "./components/user/Navbar"
 import Home from "./pages/user/Home"
 
 function App() {
