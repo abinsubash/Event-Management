@@ -1,6 +1,6 @@
 import { useState } from "react";
 import signupSchema from "../../validations/signup.schema";
-
+import { signupServices } from "../../services/auth.services";
 const Signup = () => {
   const [signupData, setSignupData] = useState({
     name: '',
@@ -40,11 +40,11 @@ const Signup = () => {
         if (field === 'password') newErrors.passwordError = message;
         if (field === 'confirm_password') newErrors.confirm_passwordError = message;
       });
-
       setSignupError(newErrors);
     } else {
-      console.log("✅ Valid signup data:", result.data);
-      alert("Signup successful!");
+      console.log("Valid signup data:", result.data);
+      console.log('This is Backend url',import.meta.env.VITE_BACKEND_URL)
+      signupServices(result.data)
     }
   };
 
