@@ -1,7 +1,7 @@
 import Navbar from "../../components/user/Navbar";
 import homeImg1 from "../../assets/Home1.jpg";
-
 const Home = () => {
+  
   return (
     <div>
       <div className="relative h-screen w-full">

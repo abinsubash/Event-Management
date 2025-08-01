@@ -1,4 +1,4 @@
 export interface IOtp {
   email: string;
-  otp: string;
+otp?: string;
 }

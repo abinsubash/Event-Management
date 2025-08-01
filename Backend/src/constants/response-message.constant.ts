@@ -1,4 +1,4 @@
-export const HttpResponce = {
+export const HttpResponse = {
   SERVER_ERROR: "Internal server error",
   USER_EXIST: "User already exist",
   EMAIL_EXIST:"Email already registerd",

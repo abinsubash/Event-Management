@@ -1,5 +1,5 @@
 import { ZodError, ZodIssueCode, ZodIssue } from "zod";
-import { HttpResponce } from "../constants/response-message.constant";
+import { HttpResponse } from "../constants/response-message.constant";
 
 interface FormattedError {
   [key: string]: string;
@@ -14,7 +14,7 @@ const FormatZodErrors = (error: ZodError): FormattedError => {
 
     if (err.code === ZodIssueCode.unrecognized_keys && "keys" in err) {
       err.keys.forEach((key: string) => {
-        formattedErrors[key] = HttpResponce.UNEXPECTED_KEY_FOUND;
+        formattedErrors[key] = HttpResponse.UNEXPECTED_KEY_FOUND;
       });
     } else {
       formattedErrors[field] = message;

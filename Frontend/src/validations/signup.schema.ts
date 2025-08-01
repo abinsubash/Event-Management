@@ -14,6 +14,8 @@ const signupSchema = z
 
     email: z.string().email("Invalid email address"),
 
+    role: z.enum(['user', 'owner', 'employee']),
+
     password: z
       .string()
       .min(8, "Password must be minimum 8 characters")

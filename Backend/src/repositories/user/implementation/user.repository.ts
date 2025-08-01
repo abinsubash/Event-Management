@@ -1,5 +1,6 @@
 import { redisClient } from "../../../configs/redis.config";
 import User, { IUserModel } from "../../../models/implementation/user.model";
+import { IUser, UserRole } from "../../../types/IUser";
 import { BaseRepository } from "../../bace.repository";
 import { IUserRepository } from "../interface/IUser.repository";
 
@@ -10,7 +11,7 @@ export class UserRepository
   constructor() {
     super(User);
   }
-  async findByEmail(email: string): Promise<IUserModel | null> {
+  async findByEmail(email: string): Promise<IUser | null> {
     try {
       return await User.findOne({ email: email });
     } catch (err) {
@@ -35,13 +36,24 @@ export class UserRepository
       throw new Error("Error finding OTP");
     }
   }
-  async findOtpUserdata(email: string):Promise<any> {
+  async findOtpUserdata(email: string): Promise<any> {
     try {
       const userKey = `user:${email}`;
       return await redisClient.get(userKey);
     } catch (err) {
       console.log(err);
-      throw new Error("Error finding userdetials")
+      throw new Error("Error finding userdetials");
     }
   }
+  async createUser(user: IUserModel): Promise<IUserModel> {
+    try {
+      return await this.create(user);
+    } catch (err) {
+      console.log(err);
+      throw new Error("Error creating user");
+    }
+  }
+async updateRole(userId: string, role: UserRole): Promise<void> {
+  await this.findByIdAndUpdate(userId, { role });
+}
 }
